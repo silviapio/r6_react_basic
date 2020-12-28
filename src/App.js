@@ -4,8 +4,33 @@ import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
+  constructor(){
+    super();
+    this.state = {
+      count: 0
+    }
+  }
   
   handleClick = name =>  alert(`You look beautiful today, ${name}!`);
+
+  increment = () => {
+    this.setState ( 
+      prevState => {
+        return {
+          count: prevState.count + 1
+        }
+    })
+  }
+
+  decrement = () => {
+    this.setState (
+      prevState => {
+        return {
+          count: prevState.count - 1
+        }
+      }
+    )
+  }
 
   render() {
     return (
@@ -13,7 +38,13 @@ class App extends Component {
         <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
         </header>
-        <Salutacio name="Montse" handleClick={this.handleClick}/>
+        <Salutacio
+          name="Montse"
+          count={this.state.count}
+          handleClick={this.handleClick}
+          handleIncrement={this.increment}
+          handleDecrement={this.decrement}
+        />
       </div>
     );
   }
